@@ -14,12 +14,14 @@ build:
 
 requirements:
   build:
-    - {{ compiler("cxx") }}
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
   host:
     - python
     - pip
     - setuptools
     - cppy
+
   run:
     - python
 
