@@ -27,6 +27,16 @@ test:
 about:
   home: https://github.com/nucleic/kiwi
   license: BSD 3-Clause
+  license_family: BSD
+  license_file: COPYING.txt
+  summary: An efficient C++ implementation of the Cassowary constraint solver
+  description: |
+    Kiwi is an implementation of the algorithm based on the seminal
+    Cassowary paper.It is not a refactoring of the original C++ solver.
+    Kiwi has been designed from the ground up to be lightweight and fast.
+  doc_url: https://pypi.python.org/pypi/kiwisolver
+  doc_source_url: https://github.com/nucleic/kiwi/blob/master/README.rst
+  dev_url: https://github.com/nucleic/kiwi
   summary: A fast implementation of the Cassowary constraint solver
 
 extra:
