@@ -9,6 +9,7 @@ source:
   sha256: fc4453705b81d03568d5b808ad8f09c77c47534f6ac2e72e733f9ca4714aa75c
 
 build:
+  skip: True  # [py<37]
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
 
@@ -20,7 +21,7 @@ requirements:
     - python
     - pip
     - setuptools
-    - cppy
+    - cppy >=1.1.0
     - wheel
   run:
     - python >=3.7
