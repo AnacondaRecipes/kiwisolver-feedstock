@@ -9,6 +9,8 @@ source:
   sha256: fc4453705b81d03568d5b808ad8f09c77c47534f6ac2e72e733f9ca4714aa75c
 
 build:
+  # the earliest supported version of python is python 3.7
+  # https://github.com/nucleic/kiwi/blob/1.3.2/setup.py#L90
   skip: True  # [py<37]
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
