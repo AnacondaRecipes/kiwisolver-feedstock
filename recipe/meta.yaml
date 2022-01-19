@@ -26,14 +26,13 @@ requirements:
     - cppy >=1.1.0
     - wheel
   run:
-    - python >=3.7
+    - python
 
 test:
   imports:
     - kiwisolver
   requires:
     - pip
-    - python <3.10
   commands:
     - pip check
 
