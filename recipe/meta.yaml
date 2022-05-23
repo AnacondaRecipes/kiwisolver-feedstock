@@ -36,7 +36,7 @@ test:
     - pip
   commands:
     - pip check || true  # [not win]
-    - pip check || 1  # [win]
+    - pip check || 1     # [win]
 
 about:
   home: https://github.com/nucleic/kiwi
