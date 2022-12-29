@@ -1,11 +1,12 @@
+{% set name = "kiwisolver" %}
 {% set version = "1.4.4" %}
 
 package:
-  name: kiwisolver
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/k/kiwisolver/kiwisolver-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: d41997519fcba4a1e46eb4a2fe31bc12f0ff957b2b81bac28db24744f333e955
 
 build:
@@ -20,9 +21,9 @@ requirements:
   host:
     - python
     - pip
-    - cppy >=1.2.0
-    - setuptools >=61.2
-    - setuptools-scm >=3.4.3
+    - cppy
+    - setuptools
+    - setuptools-scm
     - toml
     - wheel
   run:
@@ -41,14 +42,14 @@ test:
 about:
   home: https://github.com/nucleic/kiwi
   license: BSD-3-Clause
-  license_file: LICENSE
   license_family: BSD
+  license_file: LICENSE
   summary: An efficient C++ implementation of the Cassowary constraint solver
   description: |
     Kiwi is an implementation of the algorithm based on the seminal
     Cassowary paper.It is not a refactoring of the original C++ solver.
     Kiwi has been designed from the ground up to be lightweight and fast.
-  doc_url: https://pypi.python.org/pypi/kiwisolver
+  doc_url: https://kiwisolver.readthedocs.io/
   doc_source_url: https://github.com/nucleic/kiwi/blob/master/README.rst
   dev_url: https://github.com/nucleic/kiwi
 
