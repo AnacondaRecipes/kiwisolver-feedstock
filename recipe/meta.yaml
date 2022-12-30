@@ -50,7 +50,6 @@ about:
     Cassowary paper.It is not a refactoring of the original C++ solver.
     Kiwi has been designed from the ground up to be lightweight and fast.
   doc_url: https://kiwisolver.readthedocs.io/
-  doc_source_url: https://github.com/nucleic/kiwi/blob/master/README.rst
   dev_url: https://github.com/nucleic/kiwi
 
 extra:
