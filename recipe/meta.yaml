@@ -16,25 +16,31 @@ build:
 
 requirements:
   build:
-    - {{ compiler('c') }}
+    - {{ stdlib('c') }}
     - {{ compiler('cxx') }}
   host:
     - python
     - pip
-    - cppy >=1.3.0
-    - setuptools >=61.2,<=72.1.0
+    - setuptools >=61.2  # [python_impl == CPython] 
+    - setuptools >=61.2,<=72.1.0  # [python_impl != CPython] 
     - setuptools-scm >=3.4.3
     - toml
+    - cppy >=1.3.0
   run:
     - python
 
 test:
+  source_files:
+    - py/tests
   imports:
     - kiwisolver
   requires:
     - pip
+    - pytest
   commands:
     - pip check
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+    - pytest -v py/tests
 
 about:
   home: https://github.com/nucleic/kiwi
@@ -46,7 +52,7 @@ about:
     Kiwi is an implementation of the algorithm based on the seminal
     Cassowary paper.It is not a refactoring of the original C++ solver.
     Kiwi has been designed from the ground up to be lightweight and fast.
-  doc_url: https://kiwisolver.readthedocs.io/
+  doc_url: https://kiwisolver.readthedocs.io
   dev_url: https://github.com/nucleic/kiwi
 
 extra:
