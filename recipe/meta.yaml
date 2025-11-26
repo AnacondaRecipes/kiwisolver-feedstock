@@ -1,41 +1,46 @@
 {% set name = "kiwisolver" %}
-{% set version = "1.4.8" %}
+{% set version = "1.4.9" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 23d5f023bdc8c7e54eb65f03ca5d5bb25b601eac4d7f1a042888a1f45237987e
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: c3b22c26c6fd6811b0ae8363b95ca8ce4ea3c202d3d0975b2914310ceb1bcc4d
 
 build:
-  skip: True  # [py<310]
+  skip: true  # [py<310]
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
 
 requirements:
   build:
-    - {{ compiler('c') }}
+    - {{ stdlib('c') }}
     - {{ compiler('cxx') }}
   host:
     - python
     - pip
-    - cppy
-    - setuptools
-    - setuptools-scm
+    - setuptools >=61.2  # [python_impl == CPython] 
+    - setuptools >=61.2,<=72.1.0  # [python_impl != CPython] 
+    - setuptools-scm >=3.4.3
     - toml
-    - wheel
+    - cppy >=1.3.0
   run:
     - python
 
 test:
+  source_files:
+    - py/tests
   imports:
     - kiwisolver
   requires:
     - pip
+    - pytest
   commands:
     - pip check
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+    - pytest -v py/tests
 
 about:
   home: https://github.com/nucleic/kiwi
@@ -47,7 +52,7 @@ about:
     Kiwi is an implementation of the algorithm based on the seminal
     Cassowary paper.It is not a refactoring of the original C++ solver.
     Kiwi has been designed from the ground up to be lightweight and fast.
-  doc_url: https://kiwisolver.readthedocs.io/
+  doc_url: https://kiwisolver.readthedocs.io
   dev_url: https://github.com/nucleic/kiwi
 
 extra:
