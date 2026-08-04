@@ -1,5 +1,5 @@
 {% set name = "kiwisolver" %}
-{% set version = "1.4.9" %}
+{% set version = "1.5.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: c3b22c26c6fd6811b0ae8363b95ca8ce4ea3c202d3d0975b2914310ceb1bcc4d
+  sha256: d4193f3d9dc3f6f79aaed0e5637f45d98850ebf01f7ca20e69457f3e8946b66a
 
 build:
   skip: true  # [py<310]
@@ -18,11 +18,12 @@ requirements:
   build:
     - {{ stdlib('c') }}
     - {{ compiler('cxx') }}
+    - {{ compiler('c') }}
   host:
     - python
     - pip
-    - setuptools >=61.2  # [python_impl == CPython] 
-    - setuptools >=61.2,<=72.1.0  # [python_impl != CPython] 
+    - setuptools >=61.2  # [python_impl == CPython]
+    - setuptools >=61.2,<=72.1.0  # [python_impl != CPython]
     - setuptools-scm >=3.4.3
     - toml
     - cppy >=1.3.0
